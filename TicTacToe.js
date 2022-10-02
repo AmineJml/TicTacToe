@@ -11,12 +11,13 @@ const win_conditions = [
   [1, 4, 7],
   [2, 5, 8],
 ];
+
 tiles = document.querySelectorAll(".tile");
 const state = document.getElementById("state");
-state.innerText = "We have a draw!";
-
+const reset = document.getElementById("reset");
+state.innerText = "Red is playing";
 const turnRed0 = (e) => {
-  if (game_active) {
+  if (game_active && board[0] == -1) {
     tiles[0].classList.remove("visibility");
     if (redIsPlaying) {
       tiles[0].classList.add("turnRed");
@@ -34,7 +35,7 @@ const turnRed0 = (e) => {
 };
 
 const turnRed1 = (e) => {
-  if (game_active) {
+  if (game_active && board[1] == -1) {
     tiles[1].classList.remove("visibility");
     tiles[1].classList.add("turnRed");
     if (redIsPlaying) {
@@ -52,7 +53,7 @@ const turnRed1 = (e) => {
   }
 };
 const turnRed2 = (e) => {
-  if (game_active) {
+  if (game_active && board[2] == -1) {
     tiles[2].classList.remove("visibility");
     tiles[2].classList.add("turnRed");
     if (redIsPlaying) {
@@ -70,7 +71,7 @@ const turnRed2 = (e) => {
   }
 };
 const turnRed3 = (e) => {
-  if (game_active) {
+  if (game_active && board[3] == -1) {
     tiles[3].classList.remove("visibility");
     tiles[3].classList.add("turnRed");
     if (redIsPlaying) {
@@ -88,7 +89,7 @@ const turnRed3 = (e) => {
   }
 };
 const turnRed4 = (e) => {
-  if (game_active) {
+  if (game_active && board[4] == -1) {
     tiles[4].classList.remove("visibility");
     tiles[4].classList.add("turnRed");
     if (redIsPlaying) {
@@ -106,7 +107,7 @@ const turnRed4 = (e) => {
   }
 };
 const turnRed5 = (e) => {
-  if (game_active) {
+  if (game_active && board[5] == -1) {
     tiles[5].classList.remove("visibility");
     tiles[5].classList.add("turnRed");
     if (redIsPlaying) {
@@ -124,7 +125,7 @@ const turnRed5 = (e) => {
   }
 };
 const turnRed6 = (e) => {
-  if (game_active) {
+  if (game_active && board[6] == -1) {
     tiles[6].classList.remove("visibility");
     tiles[6].classList.add("turnRed");
     if (redIsPlaying) {
@@ -142,7 +143,7 @@ const turnRed6 = (e) => {
   }
 };
 const turnRed7 = (e) => {
-  if (game_active) {
+  if (game_active && board[7] == -1) {
     tiles[7].classList.remove("visibility");
     tiles[7].classList.add("turnRed");
     if (redIsPlaying) {
@@ -160,7 +161,7 @@ const turnRed7 = (e) => {
   }
 };
 const turnRed8 = (e) => {
-  if (game_active) {
+  if (game_active && board[8] == -1) {
     tiles[8].classList.remove("visibility");
     tiles[8].classList.add("turnRed");
     if (redIsPlaying) {
@@ -178,6 +179,18 @@ const turnRed8 = (e) => {
   }
 };
 
+const resetGame = (e) => {
+  console.log("SIUU");
+  redIsPlaying = true;
+  board = [-1, -1, -1, -1, -1, -1, -1, -1, -1]; //0 for red 1 for yellow
+  game_active = true;
+
+  state.innerText = "Red is playing";
+  for (let i = 0; i < 9; i++) {
+    tiles[i].classList.add("visibility");
+  }
+};
+
 tiles[0].addEventListener("click", turnRed0);
 tiles[1].addEventListener("click", turnRed1);
 tiles[2].addEventListener("click", turnRed2);
@@ -187,6 +200,8 @@ tiles[5].addEventListener("click", turnRed5);
 tiles[6].addEventListener("click", turnRed6);
 tiles[7].addEventListener("click", turnRed7);
 tiles[8].addEventListener("click", turnRed8);
+
+reset.addEventListener("click", resetGame);
 
 const checkWin = (e) => {
   for (let i of win_conditions) {
@@ -206,6 +221,5 @@ const checkWin = (e) => {
         state.innerText = "We have a draw!";
       }
     }
-    console.log(board);
   }
 };
