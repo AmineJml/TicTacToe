@@ -1,6 +1,7 @@
 let redIsPlaying = true;
 let board = [-1, -1, -1, -1, -1, -1, -1, -1, -1]; //0 for red 1 for yellow
 let game_active = true;
+let move_counter = 0;
 const win_conditions = [
   [0, 1, 2],
   [3, 4, 5],
@@ -30,6 +31,7 @@ const turnRed0 = (e) => {
       redIsPlaying = true;
       state.innerText = "Red's turn!";
     }
+    move_counter++;
     checkWin();
   }
 };
@@ -37,7 +39,6 @@ const turnRed0 = (e) => {
 const turnRed1 = (e) => {
   if (game_active && board[1] == -1) {
     tiles[1].classList.remove("visibility");
-    tiles[1].classList.add("turnRed");
     if (redIsPlaying) {
       tiles[1].classList.add("turnRed");
       board[1] = 0;
@@ -49,13 +50,13 @@ const turnRed1 = (e) => {
       redIsPlaying = true;
       state.innerText = "Red's turn!";
     }
+    move_counter++;
     checkWin();
   }
 };
 const turnRed2 = (e) => {
   if (game_active && board[2] == -1) {
     tiles[2].classList.remove("visibility");
-    tiles[2].classList.add("turnRed");
     if (redIsPlaying) {
       tiles[2].classList.add("turnRed");
       board[2] = 0;
@@ -67,13 +68,13 @@ const turnRed2 = (e) => {
       redIsPlaying = true;
       state.innerText = "Red's turn!";
     }
+    move_counter++;
     checkWin();
   }
 };
 const turnRed3 = (e) => {
   if (game_active && board[3] == -1) {
     tiles[3].classList.remove("visibility");
-    tiles[3].classList.add("turnRed");
     if (redIsPlaying) {
       tiles[3].classList.add("turnRed");
       board[3] = 0;
@@ -85,13 +86,13 @@ const turnRed3 = (e) => {
       redIsPlaying = true;
       state.innerText = "Red's turn!";
     }
+    move_counter++;
     checkWin();
   }
 };
 const turnRed4 = (e) => {
   if (game_active && board[4] == -1) {
     tiles[4].classList.remove("visibility");
-    tiles[4].classList.add("turnRed");
     if (redIsPlaying) {
       tiles[4].classList.add("turnRed");
       board[4] = 0;
@@ -103,13 +104,13 @@ const turnRed4 = (e) => {
       redIsPlaying = true;
       state.innerText = "Red's turn!";
     }
+    move_counter++;
     checkWin();
   }
 };
 const turnRed5 = (e) => {
   if (game_active && board[5] == -1) {
     tiles[5].classList.remove("visibility");
-    tiles[5].classList.add("turnRed");
     if (redIsPlaying) {
       tiles[5].classList.add("turnRed");
       board[5] = 0;
@@ -121,13 +122,13 @@ const turnRed5 = (e) => {
       redIsPlaying = true;
       state.innerText = "Red's turn!";
     }
+    move_counter++;
     checkWin();
   }
 };
 const turnRed6 = (e) => {
   if (game_active && board[6] == -1) {
     tiles[6].classList.remove("visibility");
-    tiles[6].classList.add("turnRed");
     if (redIsPlaying) {
       tiles[6].classList.add("turnRed");
       board[6] = 0;
@@ -139,13 +140,13 @@ const turnRed6 = (e) => {
       redIsPlaying = true;
       state.innerText = "Red's turn!";
     }
+    move_counter++;
     checkWin();
   }
 };
 const turnRed7 = (e) => {
   if (game_active && board[7] == -1) {
     tiles[7].classList.remove("visibility");
-    tiles[7].classList.add("turnRed");
     if (redIsPlaying) {
       tiles[7].classList.add("turnRed");
       board[7] = 0;
@@ -157,13 +158,13 @@ const turnRed7 = (e) => {
       redIsPlaying = true;
       state.innerText = "Red's turn!";
     }
+    move_counter++;
     checkWin();
   }
 };
 const turnRed8 = (e) => {
   if (game_active && board[8] == -1) {
     tiles[8].classList.remove("visibility");
-    tiles[8].classList.add("turnRed");
     if (redIsPlaying) {
       tiles[8].classList.add("turnRed");
       board[8] = 0;
@@ -175,15 +176,16 @@ const turnRed8 = (e) => {
       redIsPlaying = true;
       state.innerText = "Red's turn!";
     }
+    move_counter++;
     checkWin();
   }
 };
 
 const resetGame = (e) => {
-  console.log("SIUU");
   redIsPlaying = true;
   board = [-1, -1, -1, -1, -1, -1, -1, -1, -1]; //0 for red 1 for yellow
   game_active = true;
+  move_counter = 0;
 
   state.innerText = "Red is playing";
   for (let i = 0; i < 9; i++) {
@@ -214,12 +216,18 @@ const checkWin = (e) => {
       if (board[i[0]] == 1) {
         state.innerText = "Yellow has won!";
         game_active = false;
+        return;
       } else if (board[i[0]] == 0) {
         state.innerText = "Red has won!";
         game_active = false;
-      } else if (move_counter == 9) {
-        state.innerText = "We have a draw!";
+        return;
       }
     }
+    if (move_counter == 9) {
+      console.log("Im in" + move_counter);
+
+      state.innerText = "We have a draw!";
+    }
+    console.log(move_counter);
   }
 };

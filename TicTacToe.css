@@ -1,16 +1,24 @@
 * {
+  /* why if i cahnge background color half of the table disappear */
   font-family: Arial, Helvetica, sans-serif;
 }
 
 #board {
+  background-image: url("board.png");
+  background-size: 303px;
   margin: 50px auto 0;
   width: 310px;
   height: 310px;
   color: #fff;
 }
 
+.title {
+  margin: auto;
+  text-align: center;
+  padding: 10px;
+}
+
 .tile {
-  background-color: red;
   display: inline-block;
   width: 100px;
   height: 100px;
@@ -31,4 +39,8 @@
 
 .color {
   background-color: yellow;
+}
+
+button {
+  margin-top: 50px;
 }
