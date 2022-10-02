@@ -1,13 +1,26 @@
 let redIsPlaying = true;
-let board = [-1, -1, -1, -1, -1, -1, -1, -1, -1];
-const winningCondition = [];
+let board = [-1, -1, -1, -1, -1, -1, -1, -1, -1]; //0 for red 1 for yellow
+
+let win_conditions = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+];
+
 const turnRed0 = (e) => {
   tiles[0].classList.remove("visibility");
   if (redIsPlaying) {
     tiles[0].classList.add("turnRed");
+    board[0] = 0;
     redIsPlaying = false;
   } else {
     tiles[0].classList.add("turnYellow");
+    board[0] = 1;
     redIsPlaying = true;
   }
 };
@@ -17,9 +30,11 @@ const turnRed1 = (e) => {
   tiles[1].classList.add("turnRed");
   if (redIsPlaying) {
     tiles[1].classList.add("turnRed");
+    board[1] = 0;
     redIsPlaying = false;
   } else {
     tiles[1].classList.add("turnYellow");
+    board[1] = 1;
     redIsPlaying = true;
   }
 };
@@ -28,9 +43,11 @@ const turnRed2 = (e) => {
   tiles[2].classList.add("turnRed");
   if (redIsPlaying) {
     tiles[2].classList.add("turnRed");
+    board[2] = 0;
     redIsPlaying = false;
   } else {
     tiles[2].classList.add("turnYellow");
+    board[2] = 1;
     redIsPlaying = true;
   }
 };
@@ -39,9 +56,11 @@ const turnRed3 = (e) => {
   tiles[3].classList.add("turnRed");
   if (redIsPlaying) {
     tiles[3].classList.add("turnRed");
+    board[3] = 0;
     redIsPlaying = false;
   } else {
     tiles[3].classList.add("turnYellow");
+    board[3] = 1;
     redIsPlaying = true;
   }
 };
@@ -50,9 +69,11 @@ const turnRed4 = (e) => {
   tiles[4].classList.add("turnRed");
   if (redIsPlaying) {
     tiles[4].classList.add("turnRed");
+    board[4] = 0;
     redIsPlaying = false;
   } else {
     tiles[4].classList.add("turnYellow");
+    board[4] = 1;
     redIsPlaying = true;
   }
 };
@@ -61,9 +82,11 @@ const turnRed5 = (e) => {
   tiles[5].classList.add("turnRed");
   if (redIsPlaying) {
     tiles[5].classList.add("turnRed");
+    board[5] = 0;
     redIsPlaying = false;
   } else {
     tiles[5].classList.add("turnYellow");
+    board[5] = 1;
     redIsPlaying = true;
   }
 };
@@ -72,9 +95,11 @@ const turnRed6 = (e) => {
   tiles[6].classList.add("turnRed");
   if (redIsPlaying) {
     tiles[6].classList.add("turnRed");
+    board[6] = 0;
     redIsPlaying = false;
   } else {
     tiles[6].classList.add("turnYellow");
+    board[6] = 1;
     redIsPlaying = true;
   }
 };
@@ -83,9 +108,11 @@ const turnRed7 = (e) => {
   tiles[7].classList.add("turnRed");
   if (redIsPlaying) {
     tiles[7].classList.add("turnRed");
+    board[7] = 0;
     redIsPlaying = false;
   } else {
     tiles[7].classList.add("turnYellow");
+    board[7] = 1;
     redIsPlaying = true;
   }
 };
@@ -94,14 +121,16 @@ const turnRed8 = (e) => {
   tiles[8].classList.add("turnRed");
   if (redIsPlaying) {
     tiles[8].classList.add("turnRed");
+    board[8] = 0;
     redIsPlaying = false;
   } else {
     tiles[8].classList.add("turnYellow");
+    board[8] = 1;
     redIsPlaying = true;
   }
 };
 tiles = document.querySelectorAll(".tile");
-
+state = document.getElementById("state");
 tiles[0].addEventListener("click", turnRed0);
 tiles[1].addEventListener("click", turnRed1);
 tiles[2].addEventListener("click", turnRed2);
@@ -112,6 +141,23 @@ tiles[6].addEventListener("click", turnRed6);
 tiles[7].addEventListener("click", turnRed7);
 tiles[8].addEventListener("click", turnRed8);
 
-// for (let i = 0; i < tiles.length; i++) {
-//   tiles[i].addEventListener("click", t);
-// }
+for (let i of win_conditions) {
+  if (
+    board[i[0]] == board[i[1]] &&
+    board[i[1]] == board[i[2]] &&
+    board[i[0]] != -1
+  ) {
+    game_active = 1;
+    state.classList.remove("start");
+    if (board[i[0]] == 1) {
+      state.innerText = "Yellow has won!";
+    } else if (board[i[0]] == 0) {
+      state.innerText = "Red has won!";
+    } else if (move_counter == 9) {
+      state.innerText = "We have a draw!";
+    }
+  }
+}
+for (let i = 0; i < tiles.length; i++) {
+  tiles[i].addEventListener("click", t);
+}
